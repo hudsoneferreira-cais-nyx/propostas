@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta · Site Hub de Inovação · cais</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --verde: #00855A;
+    --verde-escuro: #1B4332;
+    --creme: #EDE8DC;
+    --preto: #0a0a0a;
+    --cinza1: #111;
+    --cinza2: #1a1a1a;
+    --cinza3: #2a2a2a;
+    --texto: #e8e8e8;
+    --muted: #555;
+    --muted2: #333;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--preto);
+    color: var(--texto);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--cinza2);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 56px;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 2px; color: var(--creme);
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--texto); }
+  .nav-cta {
+    font-size: 11px; letter-spacing: 1px; padding: 7px 16px;
+    border: 1px solid var(--verde); color: var(--verde);
+    background: transparent; border-radius: 4px; cursor: pointer;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--verde); color: var(--creme); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding: 120px 40px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,133,90,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--verde); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--verde);
+  }
+  .hero-titulo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 9vw, 110px);
+    line-height: 0.92; letter-spacing: 1px;
+    color: var(--texto); margin-bottom: 32px;
+    max-width: 800px;
+  }
+  .hero-titulo span { color: var(--verde); }
+  .hero-sub {
+    font-size: 15px; color: var(--muted);
+    max-width: 520px; line-height: 1.7; margin-bottom: 48px;
+  }
+  .hero-valor {
+    display: flex; align-items: flex-end; gap: 16px; margin-bottom: 40px;
+  }
+  .hero-valor-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px; line-height: 1; color: var(--creme); letter-spacing: 1px;
+  }
+  .hero-valor-label {
+    font-size: 11px; color: var(--muted); letter-spacing: 1px;
+    text-transform: uppercase; padding-bottom: 8px; line-height: 1.5;
+  }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag {
+    font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    padding: 5px 12px; border: 1px solid var(--cinza3);
+    border-radius: 20px; color: var(--muted);
+  }
+  .hero-scroll {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: var(--muted2); font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* SECTION */
+  section { padding: 80px 40px; border-top: 1px solid var(--cinza2); }
+  .section-eyebrow {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--verde); margin-bottom: 40px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--verde);
+  }
+  .section-titulo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1; letter-spacing: 1px; margin-bottom: 16px;
+  }
+  .section-sub { font-size: 14px; color: var(--muted); max-width: 540px; margin-bottom: 48px; line-height: 1.7; }
+
+  /* BLOCOS DE ESCOPO */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+
+  .bloco {
+    background: var(--cinza1);
+    border: 1px solid var(--cinza2);
+    border-radius: 10px; padding: 22px 22px;
+    transition: border-color 0.2s;
+  }
+  .bloco:hover { border-color: var(--cinza3); }
+  .bloco-novo { border-color: rgba(0,133,90,0.2); }
+  .bloco-novo:hover { border-color: rgba(0,133,90,0.4); }
+
+  .bloco-header {
+    display: flex; align-items: flex-start;
+    justify-content: space-between; margin-bottom: 16px;
+  }
+  .bloco-titulo { font-size: 13px; font-weight: 600; color: var(--texto); }
+  .badge-novo {
+    font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+    background: rgba(0,133,90,0.1); color: var(--verde);
+    padding: 3px 8px; border-radius: 10px; white-space: nowrap;
+  }
+  .item-linha {
+    display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px;
+  }
+  .item-check { color: var(--verde); font-size: 11px; margin-top: 2px; flex-shrink: 0; }
+  .item-check-muted { color: var(--muted2); font-size: 11px; margin-top: 2px; flex-shrink: 0; }
+  .item-texto { font-size: 12px; color: #888; line-height: 1.5; }
+  .item-texto-muted { font-size: 12px; color: var(--muted2); line-height: 1.5; }
+
+  /* PROCESSO */
+  .processo-lista { display: flex; flex-direction: column; gap: 0; }
+  .processo-item {
+    display: grid; grid-template-columns: 60px 1fr;
+    gap: 0; position: relative;
+  }
+  .processo-item:not(:last-child) .processo-linha::after {
+    content: ''; position: absolute;
+    left: 19px; top: 40px; bottom: -20px;
+    width: 1px; background: var(--cinza2);
+  }
+  .processo-esq { position: relative; padding-bottom: 40px; }
+  .processo-numero {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid var(--cinza3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: var(--muted);
+    transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .processo-item.ativo .processo-numero {
+    border-color: var(--verde); color: var(--creme);
+    background: var(--verde);
+    transform: scale(1.15);
+    box-shadow: 0 0 0 4px rgba(0,133,90,0.15);
+  }
+  .processo-item .processo-nome {
+    transition: color 0.4s ease;
+  }
+  .processo-item.ativo .processo-nome {
+    color: var(--verde);
+  }
+  .processo-item .processo-linha::after {
+    transition: background 0.4s ease;
+  }
+  .processo-item.ativo .processo-linha::after {
+    background: var(--verde) !important;
+  }
+  .processo-dir { padding: 8px 0 40px 20px; }
+  .processo-nome { font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 6px; }
+  .processo-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .processo-prazo {
+    display: inline-block; margin-top: 8px;
+    font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--muted2); border: 1px solid var(--cinza2);
+    padding: 3px 10px; border-radius: 10px;
+  }
+
+  /* FINANCEIRO */
+  .financeiro-grid { display: grid; grid-template-columns: 1fr 360px; gap: 24px; align-items: start; }
+  .financeiro-card {
+    background: var(--cinza1); border: 1px solid var(--cinza2);
+    border-radius: 12px; padding: 28px;
+  }
+  .valor-total {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px; line-height: 1; color: var(--creme); letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .valor-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 24px; }
+  .linha-financeira {
+    display: flex; justify-content: space-between;
+    padding: 10px 0; border-bottom: 1px solid var(--cinza2);
+    font-size: 13px; color: var(--muted);
+  }
+  .linha-financeira:last-child { border-bottom: none; }
+  .linha-financeira span:last-child { color: var(--texto); font-variant-numeric: tabular-nums; }
+
+  .parcela-opcoes { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
+  .parcela-btn {
+    flex: 1; min-width: 70px; padding: 10px 8px; text-align: center;
+    border: 1px solid var(--cinza2); border-radius: 6px;
+    background: transparent; color: var(--muted); cursor: pointer;
+    font-size: 12px; font-family: 'Inter', sans-serif;
+    transition: all 0.15s;
+  }
+  .parcela-btn:hover { border-color: var(--cinza3); color: var(--texto); }
+  .parcela-btn.ativo { border-color: var(--verde); color: var(--creme); background: var(--verde); }
+  .parcela-valor { font-size: 18px; font-weight: 600; color: var(--texto); margin-top: 4px; }
+  .parcela-desc { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+  .futuro-card {
+    background: var(--cinza1); border: 1px solid var(--cinza2);
+    border-radius: 10px; padding: 20px 22px;
+  }
+  .futuro-titulo { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted2); margin-bottom: 12px; }
+
+  /* CTA */
+  .cta-section {
+    padding: 100px 40px;
+    text-align: center;
+    border-top: 1px solid var(--cinza2);
+    background: linear-gradient(180deg, var(--preto) 0%, #0d0d0d 100%);
+  }
+  .cta-titulo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 7vw, 80px);
+    line-height: 0.95; letter-spacing: 1px; margin-bottom: 20px;
+  }
+  .cta-titulo span { color: var(--verde); }
+  .cta-sub { font-size: 14px; color: var(--muted); max-width: 420px; margin: 0 auto 40px; line-height: 1.7; }
+  .cta-btn {
+    display: inline-block; padding: 14px 36px;
+    background: var(--verde); color: var(--creme);
+    font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    border-radius: 4px; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .cta-btn:hover { opacity: 0.88; }
+
+  /* FOOTER */
+  footer {
+    padding: 24px 40px;
+    border-top: 1px solid var(--cinza2);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: var(--creme); }
+  .footer-txt { font-size: 11px; color: var(--muted2); }
+
+  /* ACCORDION (escopo) */
+  .acc-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 16px; cursor: pointer;
+    border-radius: 8px; background: var(--cinza1);
+    border: 1px solid var(--cinza2); margin-bottom: 6px;
+    transition: border-color 0.15s; user-select: none;
+  }
+  .acc-header:hover { border-color: var(--cinza3); }
+  .acc-header.open { border-color: var(--cinza3); border-radius: 8px 8px 0 0; margin-bottom: 0; }
+  .acc-title { font-size: 13px; font-weight: 500; color: var(--texto); }
+  .acc-right { display: flex; align-items: center; gap: 10px; }
+  .acc-badge { font-size: 9px; letter-spacing: 1px; background: rgba(0,133,90,0.1); color: var(--verde); padding: 2px 8px; border-radius: 10px; }
+  .acc-arrow { color: var(--muted2); font-size: 11px; transition: transform 0.2s; }
+  .acc-arrow.open { transform: rotate(180deg); }
+  .acc-body {
+    background: #0a0a0a; border: 1px solid var(--cinza2); border-top: none;
+    border-radius: 0 0 8px 8px; padding: 12px 16px 14px;
+    margin-bottom: 6px; display: none;
+  }
+  .acc-body.open { display: block; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 20px 60px; }
+    section { padding: 60px 20px; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .financeiro-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+    .cta-section { padding: 60px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">cais</span>
+  <div class="nav-links">
+    <a href="#escopo">Escopo</a>
+    <a href="#processo">Processo</a>
+    <a href="#investimento">Investimento</a>
+  </div>
+  <a href="#investimento" class="nav-cta">Ver investimento</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="topo">
+  <div class="hero-eyebrow">Proposta comercial · cais</div>
+  <h1 class="hero-titulo">
+    Site do<br><span>Hub de</span><br>Inovação
+  </h1>
+  <p class="hero-sub">
+    Um site institucional completo — com identidade visual criada do zero, CMS para a equipe operar com autonomia e estrutura preparada para crescer junto com o hub.
+  </p>
+  <div class="hero-valor">
+    <div class="hero-valor-num">R$ 31.800</div>
+    <div class="hero-valor-label">Investimento total<br>12 meses de manutenção inclusos</div>
+  </div>
+  <div class="hero-tags">
+    <span class="tag">Identidade visual</span>
+    <span class="tag">Site completo</span>
+    <span class="tag">CMS multi-perfil</span>
+    <span class="tag">Onboarding</span>
+    <span class="tag">Manutenção anual</span>
+  </div>
+  <div class="hero-scroll">↓ scroll</div>
+</section>
+
+<!-- ESCOPO -->
+<section id="escopo">
+  <div class="section-eyebrow">O que está incluso</div>
+  <h2 class="section-titulo">Escopo completo</h2>
+  <p class="section-sub">Seis frentes de trabalho cobrindo tudo que o hub precisa para ter uma presença digital sólida e operável.</p>
+
+  <!-- ACCORDIONS -->
+  <div style="max-width: 860px;">
+
+    <div class="acc-header" onclick="toggleAcc('id1', this)">
+      <span class="acc-title">Identidade visual</span>
+      <div class="acc-right">
+        <span class="acc-badge">Criado do zero</span>
+        <span class="acc-arrow" id="arr-id1">▼</span>
+      </div>
+    </div>
+    <div class="acc-body" id="id1">
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Criação de logo e símbolo visual do hub</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Paleta de cores, tipografia e sistema visual</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Guia de aplicação básico para uso futuro pela equipe</span></div>
+    </div>
+
+    <div class="acc-header" onclick="toggleAcc('id2', this)">
+      <span class="acc-title">Produção de conteúdo</span>
+      <div class="acc-right">
+        <span class="acc-badge">cais produz</span>
+        <span class="acc-arrow" id="arr-id2">▼</span>
+      </div>
+    </div>
+    <div class="acc-body" id="id2">
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Copywriting completo de todas as páginas do site</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Direção e curadoria de imagens e fotos</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Revisão editorial e alinhamento de tom e voz</span></div>
+    </div>
+
+    <div class="acc-header" onclick="toggleAcc('id3', this)">
+      <span class="acc-title">Desenvolvimento do site</span>
+      <div class="acc-right">
+        <span class="acc-arrow" id="arr-id3">▼</span>
+      </div>
+    </div>
+    <div class="acc-body" id="id3">
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Arquitetura de informação e mapa do site</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Design de todas as páginas — responsivo para mobile e desktop</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Desenvolvimento front-end (Next.js + Tailwind)</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Páginas: home, sobre, programas, agenda, empresas e contato</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Vitrine de empresas residentes (estrutura pronta para popular)</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">SEO on-page completo</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Deploy e configuração de hospedagem (Vercel)</span></div>
+    </div>
+
+    <div class="acc-header" onclick="toggleAcc('id4', this)">
+      <span class="acc-title">CMS e painel administrativo</span>
+      <div class="acc-right">
+        <span class="acc-badge">Multi-perfil</span>
+        <span class="acc-arrow" id="arr-id4">▼</span>
+      </div>
+    </div>
+    <div class="acc-body" id="id4">
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">CMS configurado — Payload CMS (painel simples e visual)</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Tipo "Evento / Agenda" com campos intuitivos para publicação semanal</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Tipo "Notícia" para comunicados e novidades</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Tipo "Programa" com página dedicada para cada iniciativa</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Múltiplos perfis de acesso — hub, prefeitura e apoiadores</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Arquitetura preparada para formulários de inscrição futuros</span></div>
+    </div>
+
+    <div class="acc-header" onclick="toggleAcc('id5', this)">
+      <span class="acc-title">Onboarding e treinamento</span>
+      <div class="acc-right">
+        <span class="acc-arrow" id="arr-id5">▼</span>
+      </div>
+    </div>
+    <div class="acc-body" id="id5">
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Manual visual passo a passo em linguagem acessível</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Vídeo de treinamento gravado — como publicar cada tipo de conteúdo</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Sessão ao vivo de treinamento com a equipe do hub</span></div>
+    </div>
+
+    <div class="acc-header" onclick="toggleAcc('id6', this)">
+      <span class="acc-title">Manutenção anual — 12 meses</span>
+      <div class="acc-right">
+        <span class="acc-arrow" id="arr-id6">▼</span>
+      </div>
+    </div>
+    <div class="acc-body" id="id6">
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Atualizações técnicas e de segurança</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Suporte e correções conforme contrato</span></div>
+      <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Revisão anual de design e copy</span></div>
+    </div>
+
+    <!-- FUTURO DETALHADO -->
+    <div style="margin-top: 20px; border: 1px solid var(--cinza2); border-radius: 10px; overflow: hidden;">
+      <div style="padding: 14px 18px; background: #111; border-bottom: 1px solid var(--cinza2);">
+        <div style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted2);">Não incluso nesta proposta</div>
+        <div style="font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.6;">O site é entregue com arquitetura preparada para receber os itens abaixo. Cada um pode ser orçado separadamente quando o hub estiver pronto para avançar.</div>
+      </div>
+
+      <div style="padding: 6px 10px; background: #0a0a0a;">
+
+        <div style="padding: 14px 10px; border-bottom: 1px solid var(--cinza2);">
+          <div style="font-size: 12px; font-weight: 600; color: #666; margin-bottom: 6px;">Formulário de inscrição para programas e editais</div>
+          <div style="font-size: 12px; color: var(--muted2); line-height: 1.6;">Formulário integrado ao site com campos customizados por programa, validação de dados e envio automático para e-mail ou planilha da equipe. Pode ser simples (contato + interesse) ou estruturado (ficha completa de inscrição com anexos). Condições e prazo de análise a definir.</div>
+        </div>
+
+        <div style="padding: 14px 10px; border-bottom: 1px solid var(--cinza2);">
+          <div style="font-size: 12px; font-weight: 600; color: #666; margin-bottom: 6px;">Vitrine de empresas residentes</div>
+          <div style="font-size: 12px; color: var(--muted2); line-height: 1.6;">A estrutura da página de empresas já estará no ar, mas vazia. Quando o hub tiver empresas residentes formalizadas, cada perfil pode ser cadastrado diretamente no CMS com logo, descrição, segmento, contato e links. Nenhum desenvolvimento adicional será necessário para os primeiros cadastros.</div>
+        </div>
+
+        <div style="padding: 14px 10px; border-bottom: 1px solid var(--cinza2);">
+          <div style="font-size: 12px; font-weight: 600; color: #666; margin-bottom: 6px;">Integração com newsletter ou CRM</div>
+          <div style="font-size: 12px; color: var(--muted2); line-height: 1.6;">Conexão do site com ferramentas como Mailchimp, RD Station ou similar — captura de contatos pelo site, automações de e-mail e segmentação de audiência. Inclui configuração da integração e testes de envio. Orçado separadamente por depender da ferramenta escolhida pelo hub.</div>
+        </div>
+
+        <div style="padding: 14px 10px;">
+          <div style="font-size: 12px; font-weight: 600; color: #666; margin-bottom: 6px;">Perfis adicionais de usuário no CMS</div>
+          <div style="font-size: 12px; color: var(--muted2); line-height: 1.6;">O CMS já vem configurado com perfis para a equipe do hub, prefeitura e apoiadores iniciais. Se no futuro forem necessários perfis adicionais — como empresas residentes com acesso para atualizar seu próprio perfil — isso pode ser adicionado com ajuste simples nas permissões do sistema.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section id="processo">
+  <div class="section-eyebrow">Como trabalhamos</div>
+  <h2 class="section-titulo">Processo em 5 etapas</h2>
+  <p class="section-sub">Da identidade visual ao treinamento da equipe — cada fase com entregável claro e aprovação antes de avançar.</p>
+
+  <div class="processo-lista" style="max-width: 620px;">
+    <div class="processo-item" id="etapa-1">
+      <div class="processo-esq processo-linha">
+        <div class="processo-numero">1</div>
+      </div>
+      <div class="processo-dir">
+        <div class="processo-nome">Identidade e direção criativa</div>
+        <div class="processo-desc">Criação do logo, sistema visual e tom de comunicação do hub. Base que guia todo o restante do projeto.</div>
+        <span class="processo-prazo">Semana 1–2</span>
+      </div>
+    </div>
+    <div class="processo-item" id="etapa-2">
+      <div class="processo-esq processo-linha">
+        <div class="processo-numero">2</div>
+      </div>
+      <div class="processo-dir">
+        <div class="processo-nome">Conteúdo e arquitetura</div>
+        <div class="processo-desc">Copywriting de todas as páginas, curadoria de imagens e mapeamento da estrutura completa do site.</div>
+        <span class="processo-prazo">Semana 2–3</span>
+      </div>
+    </div>
+    <div class="processo-item" id="etapa-3">
+      <div class="processo-esq processo-linha">
+        <div class="processo-numero">3</div>
+      </div>
+      <div class="processo-dir">
+        <div class="processo-nome">Design e desenvolvimento</div>
+        <div class="processo-desc">Design de todas as telas, desenvolvimento front-end e configuração do CMS com os tipos de conteúdo definidos.</div>
+        <span class="processo-prazo">Semana 3–6</span>
+      </div>
+    </div>
+    <div class="processo-item" id="etapa-4">
+      <div class="processo-esq processo-linha">
+        <div class="processo-numero">4</div>
+      </div>
+      <div class="processo-dir">
+        <div class="processo-nome">Revisão e ajustes</div>
+        <div class="processo-desc">Duas rodadas de revisão com o hub. Ajustes de conteúdo, layout e funcionalidades antes do lançamento.</div>
+        <span class="processo-prazo">Semana 6–7</span>
+      </div>
+    </div>
+    <div class="processo-item" id="etapa-5">
+      <div class="processo-esq">
+        <div class="processo-numero">5</div>
+      </div>
+      <div class="processo-dir">
+        <div class="processo-nome">Lançamento e onboarding</div>
+        <div class="processo-desc">Deploy do site, entrega do manual, vídeo de treinamento e sessão ao vivo com a equipe do hub.</div>
+        <span class="processo-prazo">Semana 8</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTIMENTO -->
+<section id="investimento">
+  <div class="section-eyebrow">Investimento</div>
+  <h2 class="section-titulo">Financeiro</h2>
+  <p class="section-sub">Valor fixo sem surpresas. Tudo incluso — da identidade visual ao último mês de manutenção.</p>
+
+  <div class="financeiro-grid">
+    <div>
+      <div class="financeiro-card">
+        <div class="valor-total">R$ 31.800</div>
+        <div class="valor-label">Investimento total · tudo incluso</div>
+
+        <div class="linha-financeira">
+          <span>Identidade visual + conteúdo</span>
+          <span>Incluso</span>
+        </div>
+        <div class="linha-financeira">
+          <span>Desenvolvimento do site</span>
+          <span>Incluso</span>
+        </div>
+        <div class="linha-financeira">
+          <span>CMS multi-perfil configurado</span>
+          <span>Incluso</span>
+        </div>
+        <div class="linha-financeira">
+          <span>Onboarding e treinamento</span>
+          <span>Incluso</span>
+        </div>
+        <div class="linha-financeira">
+          <span>Manutenção anual (12 meses)</span>
+          <span>Incluso</span>
+        </div>
+
+        <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--cinza2);">
+          <div style="font-size: 11px; color: var(--muted); margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase;">Escolha o parcelamento</div>
+          <div class="parcela-opcoes">
+            <button class="parcela-btn" onclick="setParcela(1, this)">
+              <div>À vista</div>
+              <div class="parcela-valor">R$ 31.800</div>
+            </button>
+            <button class="parcela-btn ativo" onclick="setParcela(3, this)">
+              <div>3×</div>
+              <div class="parcela-valor">R$ 10.600</div>
+            </button>
+            <button class="parcela-btn" onclick="setParcela(4, this)">
+              <div>4×</div>
+              <div class="parcela-valor">R$ 7.950</div>
+            </button>
+            <button class="parcela-btn" onclick="setParcela(6, this)">
+              <div>6×</div>
+              <div class="parcela-valor">R$ 5.300</div>
+            </button>
+          </div>
+          <div id="parcela-info" style="margin-top: 14px; font-size: 12px; color: var(--muted); line-height: 1.6;">
+            Sugestão: 50% na assinatura · 25% na entrega do design · 25% no lançamento
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div class="futuro-card">
+        <div class="futuro-titulo">Condições</div>
+        <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Prazo estimado: 8 semanas</span></div>
+        <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">2 rodadas de revisão incluídas</span></div>
+        <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Hospedagem Vercel — ~R$ 0 a R$ 100/mês por conta do hub</span></div>
+        <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Domínio contratado pelo hub</span></div>
+        <div class="item-linha"><span class="item-check">✓</span><span class="item-texto">Código-fonte entregue ao hub ao final</span></div>
+      </div>
+
+      <div class="futuro-card">
+        <div class="futuro-titulo">O que precisa do hub</div>
+        <div class="item-linha"><span style="color: var(--muted2); font-size: 11px; margin-top: 2px;">→</span><span class="item-texto-muted">Briefing de identidade e referências visuais</span></div>
+        <div class="item-linha"><span style="color: var(--muted2); font-size: 11px; margin-top: 2px;">→</span><span class="item-texto-muted">Informações institucionais e sobre os programas</span></div>
+        <div class="item-linha"><span style="color: var(--muted2); font-size: 11px; margin-top: 2px;">→</span><span class="item-texto-muted">Aprovação em até 5 dias úteis por rodada</span></div>
+        <div class="item-linha"><span style="color: var(--muted2); font-size: 11px; margin-top: 2px;">→</span><span class="item-texto-muted">Disponibilidade para sessão de treinamento</span></div>
+      </div>
+
+      <div style="padding: 16px; background: rgba(0,133,90,0.04); border: 1px solid rgba(0,133,90,0.15); border-radius: 10px;">
+        <div style="font-size: 12px; color: #888; line-height: 1.7;">
+          Proposta gerada por cais · Volta Redonda, RJ
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2 class="cta-titulo">Entre a ideia<br>e o <span>movimento</span>,<br>existe um cais.</h2>
+  <p class="cta-sub">Vamos construir o site do hub e dar presença digital a um projeto que merece ser visto.</p>
+  <a href="https://wa.me/5524999999999" class="cta-btn">Fechar proposta</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">cais</span>
+  <span class="footer-txt">cais · Volta Redonda, RJ · Produção audiovisual e presença digital</span>
+</footer>
+
+<script>
+function toggleAcc(id, header) {
+  const body = document.getElementById(id);
+  const arr = document.getElementById('arr-' + id);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arr.classList.toggle('open', !isOpen);
+  header.classList.toggle('open', !isOpen);
+}
+
+const parcelas = {
+  1: { texto: 'Pagamento à vista com desconto de 5% — R$ 30.210' },
+  3: { texto: 'Sugestão: 50% na assinatura · 25% na entrega do design · 25% no lançamento' },
+  4: { texto: 'Sugestão: 40% na assinatura · 30% na entrega do design · 30% no lançamento' },
+  6: { texto: 'Sugestão: 30% na assinatura · parcelas mensais até o lançamento' },
+};
+
+function setParcela(n, btn) {
+  document.querySelectorAll('.parcela-btn').forEach(b => b.classList.remove('ativo'));
+  btn.classList.add('ativo');
+  document.getElementById('parcela-info').textContent = parcelas[n].texto;
+}
+
+// SCROLL OBSERVER — ativa bolinha conforme a etapa entra na tela
+const etapas = document.querySelectorAll('.processo-item');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Remove ativo de todas
+      etapas.forEach(e => e.classList.remove('ativo'));
+      // Ativa a atual e todas as anteriores
+      let encontrou = false;
+      etapas.forEach(e => {
+        if (!encontrou) e.classList.add('ativo');
+        if (e === entry.target) encontrou = true;
+      });
+    }
+  });
+}, {
+  root: null,
+  rootMargin: '0px 0px -40% 0px', // dispara quando a etapa entra no terço superior da tela
+  threshold: 0.1
+});
+
+etapas.forEach(etapa => observer.observe(etapa));
+</script>
+</body>
+</html>
